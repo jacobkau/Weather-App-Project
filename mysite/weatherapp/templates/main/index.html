@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css"
+            integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="
+            crossorigin="anonymous"
+        >
+        <title>Weather App</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body class="custom-body" style="background-color: #f0f8ff;">
+        <div class="container" style="margin-top: 8vh;">
+            <div class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: teal;">
+                <div class="container">
+                    <a href="../" class="navbar-brand">
+                        Weather App
+                        <span style="color: #f5f5f5;">
+                            <strong>- Django Framework</strong>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div id="jumbotron" class="jumbotron text-center custom-jumbotron">
+                <div id="jumbotron" class="jumbotron text-center custom-jumbotron">
+                    <h1 class="display-4">Weather Desktop App</h1>
+                    <p class="lead">Using Python Language and Django Framework</p>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container">
+                        <form method="post" class="w-100">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="city"
+                                    placeholder="Choose Your City ..."
+                                    aria-label="City"
+                                >
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-success">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+                <div class="container mt-5">
+                    <div class="row">
+                        {% if country_code and coordinate and temp and pressure and humidity %}
+                        <div class="col-md-6 mx-auto">
+                            <div class="card shadow-lg border-info">
+                                <div class="card-header bg-info text-white">
+                                    <h4>Weather Information</h4>
+                                </div>
+                                <div class="card-body">
+                                    <h5>
+                                        <span class="badge badge-warning">Country Code:</span>
+                                        {{country_code}}
+                                    </h5>
+                                    <h5>
+                                        <span class="badge badge-warning">Coordinates [X,Y]:</span>
+                                        {{coordinate}}
+                                    </h5>
+                                    <h5>
+                                        <span class="badge badge-warning">Temperature in Celsius:</span>
+                                        {{temp}} °C
+                                    </h5>
+                                    <h5>
+                                        <span class="badge badge-warning">Pressure:</span>
+                                        {{pressure}} hPa
+                                    </h5>
+                                    <h5>
+                                        <span class="badge badge-warning">Humidity:</span>
+                                        {{humidity}}%
+                                    </h5>
+                                    <h5>
+                                        <span class="badge badge-warning">Forecast:</span>
+                                        {{main}}
+                                        <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Forecast Icon" style="width:70px">
+                                    </h5>
+                                    <h5>
+                                        <span class="badge badge-warning">Description:</span>
+                                        {{description}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center text-white py-3 mt-5" style="background-color: teal;">
+            <p>&copy; 2025 Weather App - All rights reserved</p>
+        </footer>
+    </body>
+</html>
